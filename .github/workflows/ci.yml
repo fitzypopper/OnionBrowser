@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [3.X]
+  pull_request:
+    branches: [3.X]
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: macos-15
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.app
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: false
+
+      - name: Install CocoaPods
+        run: pod install --repo-update
+
+      - name: Patch Config.xcconfig for CI
+        run: |
+          # Use a generic bundle ID and no signing for CI builds
+          cat > Config.xcconfig << 'EOF'
+          PRODUCT_BUNDLE_IDENTIFIER[config=Debug] = org.onionbrowser.OnionBrowser.CI
+          DEVELOPMENT_TEAM[config=Debug] =
+          PROVISIONING_PROFILE_SPECIFIER[config=Debug] =
+          PRODUCT_BUNDLE_IDENTIFIER[config=Release] = org.onionbrowser.OnionBrowser.CI
+          DEVELOPMENT_TEAM[config=Release] =
+          PROVISIONING_PROFILE_SPECIFIER[config=Release] =
+          EOF
+
+      - name: Build (Debug, simulator)
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -workspace OnionBrowser.xcworkspace \
+            -scheme OnionBrowser \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            | xcpretty
+
+      - name: Run Tests
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -workspace OnionBrowser.xcworkspace \
+            -scheme OnionBrowser \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            | xcpretty

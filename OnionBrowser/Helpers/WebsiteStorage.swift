@@ -48,6 +48,71 @@ class WebsiteStorage {
 	}
 
 	/**
+	 Clear only cache data (Disk Cache, Memory Cache, Fetch Cache).
+	 Respects whitelist for affected domains.
+	 */
+	func clearCache() {
+		let cacheTypes: Set<String> = [
+			WKWebsiteDataTypeDiskCache,
+			WKWebsiteDataTypeMemoryCache,
+			WKWebsiteDataTypeFetchCache,
+		]
+
+		store.fetchDataRecords(ofTypes: cacheTypes) { records in
+			let toRemove = records.filter { record in
+				!self.isWhitelisted(record.displayName)
+			}
+
+			self.store.removeData(ofTypes: cacheTypes, for: toRemove) {
+				// Ignore.
+			}
+		}
+	}
+
+	/**
+	 Clear only cookies. Respects whitelist.
+	 */
+	func clearCookies() {
+		let cookieTypes: Set<String> = [WKWebsiteDataTypeCookies]
+
+		store.httpCookieStore.getAllCookies { cookies in
+			for cookie in cookies {
+				if !self.isWhitelisted(cookie.domain) {
+					self.store.httpCookieStore.delete(cookie)
+				}
+			}
+		}
+
+		store.fetchDataRecords(ofTypes: cookieTypes) { records in
+			let toRemove = records.filter { record in
+				!self.isWhitelisted(record.displayName)
+			}
+
+			self.store.removeData(ofTypes: cookieTypes, for: toRemove) {
+				// Ignore.
+			}
+		}
+	}
+
+	/**
+	 Clear only local storage data (Local Storage, Session Storage, IndexedDB, WebSQL).
+	 */
+	func clearLocalStorage() {
+		let localStorageTypes: Set<String> = [
+			WKWebsiteDataTypeLocalStorage,
+			WKWebsiteDataTypeSessionStorage,
+			WKWebsiteDataTypeIndexedDBDatabases,
+			WKWebsiteDataTypeWebSQLDatabases,
+		]
+
+		store.fetchDataRecords(ofTypes: localStorageTypes) { records in
+			self.store.removeData(ofTypes: localStorageTypes, for: records) {
+				// Ignore.
+			}
+		}
+	}
+
+	/**
 	 Remove all cookies and website data for domains which are not whitelisted.
 	 */
 	func cleanup() {

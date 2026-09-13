@@ -165,6 +165,16 @@ extension Tab: WKNavigationDelegate {
 			if let trust = webView.serverTrust {
 				tlsCertificate = TlsCertificate.load(trust: trust)
 			}
+			// For .onion sites without TLS, we still need to trigger the secure mode
+			// assignment. The tlsCertificate didSet handles this, but if there's
+			// no serverTrust at all, we need to set it explicitly.
+			else if url.isOnion && tlsCertificate == nil {
+				secureMode = .secure
+
+				await MainActor.run {
+					tabDelegate?.updateChrome()
+				}
+			}
 		}
 	}
 

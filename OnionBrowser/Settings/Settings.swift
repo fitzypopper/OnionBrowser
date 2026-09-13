@@ -156,6 +156,7 @@ class Settings: IPtProxyUI.Settings {
 		99: 3]
 
 
+	/// Whether the app is currently restoring its previous state on launch.
 	class var stateRestoreLock: Bool {
 		get {
 			UserDefaults.standard.bool(forKey: "state_restore_lock")
@@ -177,6 +178,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Whether the user has completed the first-run bookmark tutorial.
 	class var bookmarkFirstRunDone: Bool {
 		get {
 			UserDefaults.standard.bool(forKey: "did_first_run_bookmarks")
@@ -186,6 +188,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Whether bookmarks have been migrated from v2 to v3 onion addresses.
 	class var bookmarksMigratedToOnionV3: Bool {
 		get {
 			UserDefaults.standard.bool(forKey: "bookmarks_migrated_to_onion_v3")
@@ -195,6 +198,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Whether to advertise the app's lockdown mode in the App Store.
 	class var updateAdvertiseLockdownMode: Bool {
 		get {
 			UserDefaults.standard.bool(forKey: "update_advertise_lockdown_mode")
@@ -204,6 +208,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// The currently selected search engine for address bar queries.
 	class var searchEngine: SearchEngine {
 		get {
 			let type = SearchEngine.EngineType(rawValue: UserDefaults.standard.integer(forKey: "search_engine_type")) ?? .builtIn
@@ -222,6 +227,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// All available search engines (built-in and custom).
 	class var searchEngines: [SearchEngine] {
 		return builtInSearchEngines.keys.sorted().map { SearchEngine(name: $0, type: .builtIn) }
 			+ customSearchEngines.keys.sorted().map({ SearchEngine(name: $0, type: .custom) })
@@ -249,6 +255,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Whether to show live search suggestions as the user types.
 	class var searchLive: Bool {
 		get {
 			UserDefaults.standard.bool(forKey: "search_engine_live")
@@ -258,6 +265,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Whether to stop live search when a dot is typed (indicating a URL).
 	class var searchLiveStopDot: Bool {
 		get {
 			// Defaults to true!
@@ -272,6 +280,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Whether to hide tab content when switching away (privacy feature).
 	class var hideContent: Bool {
 		get {
 			UserDefaults.standard.object(forKey: "hide_content") == nil
@@ -297,6 +306,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Controls when open tabs are cleared for privacy.
 	class var tabSecurity: TabSecurityLevel {
 		get {
 			if let value = UserDefaults.standard.object(forKey: "tab_security") as? String,
@@ -312,6 +322,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Saved list of open tab URLs for state restoration.
 	class var openTabs: [URL]? {
 		get {
 			if let data = UserDefaults.standard.object(forKey: "open_tabs") as? Data {
@@ -331,6 +342,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Whether to mute audio when the silent switch is engaged.
 	class var muteWithSwitch: Bool {
 		get {
 			// Defaults to true!
@@ -347,6 +359,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Whether to hide bookmarks from the start page.
 	class var disableBookmarksOnStartPage: Bool {
 		get {
 			UserDefaults.standard.bool(forKey: "disable_bookmarks_on_start_page")
@@ -356,6 +369,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Whether to allow third-party keyboard extensions.
 	class var thirdPartyKeyboards: Bool {
 		get {
 			UserDefaults.standard.bool(forKey: "third_party_keyboards")
@@ -365,6 +379,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Nextcloud server URL for bookmark sync.
 	class var nextcloudServer: String? {
 		get {
 			UserDefaults.standard.string(forKey: "nextcloud_server")
@@ -374,6 +389,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Nextcloud username for bookmark sync.
 	class var nextcloudUsername: String? {
 		get {
 			UserDefaults.standard.string(forKey: "nextcloud_username")
@@ -383,6 +399,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Nextcloud password for bookmark sync.
 	class var nextcloudPassword: String? {
 		get {
 			UserDefaults.standard.string(forKey: "nextcloud_password")
@@ -392,6 +409,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// API token for communicating with a local Orbot instance.
 	class var orbotApiToken: String? {
 		get {
 			UserDefaults.standard.string(forKey: "orbot_api_token")
@@ -401,6 +419,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Whether Orbot was previously installed on this device.
 	class var orbotWasAlreadyInstalled: Bool {
 		get {
 			// Defaults to true!
@@ -415,6 +434,7 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Whether to use the built-in Tor client instead of an external one.
 	class var useBuiltInTor: Bool? {
 		get {
 			if UserDefaults.standard.object(forKey: "use_builtin_tor") == nil {
@@ -428,6 +448,27 @@ class Settings: IPtProxyUI.Settings {
 		}
 	}
 
+	/// Whether to block all cookies via JavaScript injection on every page load.
+	class var blockAllCookies: Bool {
+		get {
+			UserDefaults.standard.bool(forKey: "block_all_cookies")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "block_all_cookies")
+		}
+	}
+
+	/// Whether to enable reader mode for article-style pages.
+	class var readerMode: Bool {
+		get {
+			UserDefaults.standard.bool(forKey: "reader_mode")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "reader_mode")
+		}
+	}
+
+	/// Whether to enable the built-in URL blocker for known trackers.
 	class var enableUrlBlocker: Bool {
 		get {
 			// Defaults to true!

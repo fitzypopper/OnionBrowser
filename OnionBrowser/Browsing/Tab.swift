@@ -107,7 +107,10 @@ class Tab: UIView {
 	var tlsCertificate: TlsCertificate? {
 		didSet {
 			if tlsCertificate == nil {
-				secureMode = .insecure
+				// .onion sites are inherently secure via Tor's end-to-end encryption,
+				// even without TLS. Treat them as secure contexts.
+				// See: https://github.com/OnionBrowser/OnionBrowser/issues/613
+				secureMode = url.isOnion ? .secure : .insecure
 			}
 			else if tlsCertificate?.isEv ?? false {
 				secureMode = .secureEv
@@ -185,6 +188,7 @@ class Tab: UIView {
 	/**
 	 https://www.hackingwithswift.com/articles/112/the-ultimate-guide-to-wkwebview
 	 */
+	@MainActor
 	private(set) var webView: WKWebView?
 
 	var scrollView: UIScrollView? {
@@ -273,6 +277,7 @@ class Tab: UIView {
 
 	// MARK: Public Methods
 
+	@MainActor
 	@objc
 	func refresh() {
 		if url == URL.start || url == URL.aboutSecurityLevels {
@@ -290,6 +295,7 @@ class Tab: UIView {
 		}
 	}
 
+	@MainActor
 	func stop() {
 		webView?.stopLoading()
 
@@ -297,6 +303,7 @@ class Tab: UIView {
 		progress = 1
 	}
 
+	@MainActor
 	@objc
 	func load(_ url: URL?) {
 		var request: URLRequest?
@@ -308,6 +315,7 @@ class Tab: UIView {
 		load(request)
 	}
 
+	@MainActor
 	func load(_ request: URLRequest?) {
 		Task {
 			await MainActor.run {
@@ -372,6 +380,7 @@ class Tab: UIView {
 		self.url = url ?? URL.start
 	}
 
+	@MainActor
 	@objc
 	func goBack() {
 		if webView?.canGoBack ?? false {
@@ -383,6 +392,7 @@ class Tab: UIView {
 		}
 	}
 
+	@MainActor
 	@objc
 	func goForward() {
 		if webView?.canGoForward ?? false {
@@ -502,6 +512,10 @@ class Tab: UIView {
 		}
 
 		webView = WKWebView(frame: .zero, configuration: conf)
+
+		if Settings.blockAllCookies {
+			CookieBlocker.shared.blockCookies(for: conf)
+		}
 
 #if DEBUG
 		if #available(iOS 16.4, *) {

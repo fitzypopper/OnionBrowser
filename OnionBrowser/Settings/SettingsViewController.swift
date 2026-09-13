@@ -133,6 +133,43 @@ class SettingsViewController: FixedFormViewController {
 				Storage1ViewController(), animated: true)
 		}
 
+		<<< LabelRow() {
+			$0.title = NSLocalizedString("Clear Cache & Data", comment: "Option title")
+			$0.cell.textLabel?.numberOfLines = 0
+			$0.cell.accessoryType = .disclosureIndicator
+			$0.cell.selectionStyle = .default
+		}
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(
+				CacheClearingViewController(), animated: true)
+		}
+
+		<<< SwitchRow() {
+			$0.title = NSLocalizedString("Block All Cookies", comment: "Option title")
+			$0.value = Settings.blockAllCookies
+			$0.cell.switchControl.onTintColor = .accent
+			$0.cell.textLabel?.numberOfLines = 0
+			$0.cell.accessibilityHint = NSLocalizedString(
+				"Temporarily blocks all cookies from being stored by websites.",
+				comment: "Accessibility hint for Block All Cookies toggle")
+		}
+		.onChange { row in
+			if let value = row.value {
+				Settings.blockAllCookies = value
+
+				for tab in AppDelegate.shared?.allOpenTabs ?? [] {
+					if let webView = tab.webView {
+						if value {
+							CookieBlocker.shared.blockCookies(for: webView.configuration)
+						}
+						else {
+							CookieBlocker.shared.unblockCookies(for: webView.configuration)
+						}
+					}
+				}
+			}
+		}
+
 		<<< SwitchRow() {
 			switch SecureEnclave.biometryType() {
 			case .touchID:

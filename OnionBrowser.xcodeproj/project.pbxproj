@@ -48,7 +48,13 @@
 		A02414382A0260B1009AEE25 /* WhyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02414362A0260B1009AEE25 /* WhyViewController.swift */; };
 		A02640D72E33A9EE003D2C60 /* light-onlydomains.txt in Resources */ = {isa = PBXBuildFile; fileRef = A02640D62E33A9EE003D2C60 /* light-onlydomains.txt */; };
 		A02885802893FA23007D5AE8 /* WebsiteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028857F2893FA23007D5AE8 /* WebsiteStorage.swift */; };
+		C0A1B2C3D4E5F60123456711 /* CookieBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1B2C3D4E5F60123456704 /* CookieBlocker.swift */; };
+		C0A1B2C3D4E5F60123456712 /* ReaderModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1B2C3D4E5F60123456701 /* ReaderModeManager.swift */; };
+		C0A1B2C3D4E5F60123456713 /* ReaderModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1B2C3D4E5F60123456702 /* ReaderModeViewController.swift */; };
+		C0A1B2C3D4E5F60123456714 /* ReaderModeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1B2C3D4E5F60123456703 /* ReaderModeActivity.swift */; };
+		C0A1B2C3D4E5F60123456721 /* FeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A1B2C3D4E5F60123456720 /* FeatureTests.swift */; };
 		A028858228940B93007D5AE8 /* Storage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028858128940B93007D5AE8 /* Storage2ViewController.swift */; };
+		B0A1B2C3D4E5F60123456702 /* CacheClearingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A1B2C3D4E5F60123456701 /* CacheClearingViewController.swift */; };
 		A02A09082AD6B92800A9334C /* TorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07DD6B42AC5914B00441B48 /* TorManager.swift */; };
 		A02A090F2AD6BA9600A9334C /* OrbotOrBuiltInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02A090D2AD6BA9600A9334C /* OrbotOrBuiltInViewController.swift */; };
 		A02A09122AD6CAF000A9334C /* StartTorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02A09112AD6CAF000A9334C /* StartTorViewController.swift */; };
@@ -269,6 +275,11 @@
 		A02640D42E33A9A0003D2C60 /* update-blocklist.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "update-blocklist.sh"; sourceTree = "<group>"; };
 		A02640D62E33A9EE003D2C60 /* light-onlydomains.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "light-onlydomains.txt"; sourceTree = "<group>"; };
 		A028857F2893FA23007D5AE8 /* WebsiteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteStorage.swift; sourceTree = "<group>"; };
+		C0A1B2C3D4E5F60123456704 /* CookieBlocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieBlocker.swift; sourceTree = "<group>"; };
+		C0A1B2C3D4E5F60123456701 /* ReaderModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderModeManager.swift; sourceTree = "<group>"; };
+		C0A1B2C3D4E5F60123456702 /* ReaderModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderModeViewController.swift; sourceTree = "<group>"; };
+		C0A1B2C3D4E5F60123456703 /* ReaderModeActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderModeActivity.swift; sourceTree = "<group>"; };
+		C0A1B2C3D4E5F60123456720 /* FeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureTests.swift; sourceTree = "<group>"; };
 		A028858128940B93007D5AE8 /* Storage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage2ViewController.swift; sourceTree = "<group>"; };
 		A02A090D2AD6BA9600A9334C /* OrbotOrBuiltInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbotOrBuiltInViewController.swift; sourceTree = "<group>"; };
 		A02A090E2AD6BA9600A9334C /* OrbotOrBuiltInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrbotOrBuiltInViewController.xib; sourceTree = "<group>"; };
@@ -491,6 +502,7 @@
 		A0BFD3EA289D6D9100CB9F6D /* testpage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = testpage; sourceTree = "<group>"; };
 		A0C0FE952EF5AA6100619E60 /* translate-release-notes.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "translate-release-notes.sh"; sourceTree = "<group>"; };
 		A0C1FB102D50FC5200AE97A7 /* BlocklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocklistViewController.swift; sourceTree = "<group>"; };
+		B0A1B2C3D4E5F60123456701 /* CacheClearingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheClearingViewController.swift; sourceTree = "<group>"; };
 		A0C1FB112D50FC5200AE97A7 /* UrlBlocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBlocker.swift; sourceTree = "<group>"; };
 		A0C1FB152D50FC7400AE97A7 /* TlsCertificate_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TlsCertificate_Tests.m; sourceTree = "<group>"; };
 		A0C1FB172D50FC9A00AE97A7 /* TlsCertificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TlsCertificate.swift; sourceTree = "<group>"; };
@@ -581,6 +593,7 @@
 				A08737DF2213235F005A68CC /* HostSettings_Tests.m */,
 				A0C1FB152D50FC7400AE97A7 /* TlsCertificate_Tests.m */,
 				01F879401A4112E500A63654 /* URLBlocker_Tests.m */,
+				C0A1B2C3D4E5F60123456720 /* FeatureTests.swift */,
 				018333D91A35727C00670CD1 /* Supporting Files */,
 				A0B2240E23A92B2700EA2C47 /* OnionBrowser_Tests-Bridging-Header.h */,
 			);
@@ -755,6 +768,9 @@
 				A0BF520823AFC3580096624A /* CircuitViewController.swift */,
 				A0BF520223AFC3580096624A /* CircuitNodeCell.xib */,
 				A0BF520423AFC3580096624A /* CircuitNodeCell.swift */,
+				C0A1B2C3D4E5F60123456701 /* ReaderModeManager.swift */,
+				C0A1B2C3D4E5F60123456702 /* ReaderModeViewController.swift */,
+				C0A1B2C3D4E5F60123456703 /* ReaderModeActivity.swift */,
 				A0BF520A23AFC3580096624A /* HistoryViewController.swift */,
 				A09A39612A17BE61008CC06A /* DownloadActivity.swift */,
 				A0C1FB172D50FC9A00AE97A7 /* TlsCertificate.swift */,
@@ -797,6 +813,7 @@
 				A0BF522C23AFC3580096624A /* SecurityShield.swift */,
 				A0BF522923AFC3580096624A /* Storage1ViewController.swift */,
 				A028858128940B93007D5AE8 /* Storage2ViewController.swift */,
+				B0A1B2C3D4E5F60123456701 /* CacheClearingViewController.swift */,
 				A0E8E8B02938CDFB00DC2A2F /* SearchEnginesViewController.swift */,
 				A036C3B12937A06C0035AA4F /* AddSearchEngineViewController.swift */,
 				A0BF522723AFC3580096624A /* CustomSitesViewController.swift */,
@@ -833,6 +850,7 @@
 				A0204FA02D720FF6006CDA3B /* UpdateAdvertisement.swift */,
 				A0BF524023AFC3580096624A /* URL+Helpers.swift */,
 				A028857F2893FA23007D5AE8 /* WebsiteStorage.swift */,
+				C0A1B2C3D4E5F60123456704 /* CookieBlocker.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1277,6 +1295,7 @@
 				A0C582582AE9136200A81084 /* Thread+Helpers.swift in Sources */,
 				A0325D952EAA7598009C3DE9 /* NcBookmark.swift in Sources */,
 				A028858228940B93007D5AE8 /* Storage2ViewController.swift in Sources */,
+				B0A1B2C3D4E5F60123456702 /* CacheClearingViewController.swift in Sources */,
 				A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */,
 				A01A1CB02F4726AA00D4591D /* FileTranslator.swift in Sources */,
 				A0C1FB192D50FC9A00AE97A7 /* TlsCertificate.swift in Sources */,
@@ -1305,6 +1324,10 @@
 				A0172C72288827E1008D42CD /* ApiError.swift in Sources */,
 				A0BF525723AFC3580096624A /* SecurityPopUpViewController.swift in Sources */,
 				A0696EAD2406C7D000512695 /* SyncViewController.swift in Sources */,
+				C0A1B2C3D4E5F60123456711 /* CookieBlocker.swift in Sources */,
+				C0A1B2C3D4E5F60123456712 /* ReaderModeManager.swift in Sources */,
+				C0A1B2C3D4E5F60123456713 /* ReaderModeViewController.swift in Sources */,
+				C0A1B2C3D4E5F60123456714 /* ReaderModeActivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1323,6 +1346,7 @@
 				A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */,
 				A0F8BE8627C50586002D2999 /* AltSvcHeader.swift in Sources */,
 				A05AD93D302B46D3000B3EF5 /* ContentRules.swift in Sources */,
+				C0A1B2C3D4E5F60123456721 /* FeatureTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

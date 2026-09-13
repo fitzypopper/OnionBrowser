@@ -376,7 +376,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 			present(UIActivityViewController(
 				activityItems: [currentTab],
-				applicationActivities: [DownloadActivity(), AddBookmarkActivity(), TUSafariActivity()]),
+				applicationActivities: [DownloadActivity(), AddBookmarkActivity(), ReaderModeActivity(), TUSafariActivity()]),
 					sender)
 
 		case newTabBt:
